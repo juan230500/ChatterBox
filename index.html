@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Chatbot on AWS</title>
+</head>
+<body>
+    <h1>Chatbot</h1>
+    <input type="text" id="userMessage" placeholder="Type a message">
+    <button onclick="sendMessage()">Send</button>
+    <div id="chat"></div>
+    <script>
+        function sendMessage() {
+            var message = document.getElementById("userMessage").value;
+            var apiUrl = "YOUR_API_URL/chatbotFunction?message=" + message;
+            fetch(apiUrl)
+                .then(response => response.json())
+                .then(data => {
+                    var chatDiv = document.getElementById("chat");
+                    chatDiv.innerHTML += "You: " + message + "<br>";
+                    chatDiv.innerHTML += "Bot: " + data.response + "<br>";
+                });
+        }
+    </script>
+</body>
+</html>
